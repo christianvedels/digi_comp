@@ -1,0 +1,1368 @@
+---
+output:
+  xaringan::moon_reader:
+    includes:
+      after_body: insert-logo.html
+    self_contained: false
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+      slideNumberFormat: ""
+editor_options:
+  chunk_output_type: console
+---
+class: center, inverse, middle
+
+```{r xaringan-panelset, echo=FALSE}
+xaringanExtra::use_panelset()
+```
+
+```{r xaringan-tile-view, echo=FALSE}
+xaringanExtra::use_tile_view()
+```
+
+```{css echo=FALSE}
+.pull-left {
+  float: left;
+  width: 48%;
+}
+.pull-right {
+  float: right;
+  width: 48%;
+}
+.pull-right ~ p {
+  clear: both;
+}
+
+.pull-left-wide {
+  float: left;
+  width: 66%;
+}
+.pull-right-wide {
+  float: right;
+  width: 66%;
+}
+.pull-right-wide ~ p {
+  clear: both;
+}
+
+.pull-left-narrow {
+  float: left;
+  width: 30%;
+}
+.pull-right-narrow {
+  float: right;
+  width: 30%;
+}
+
+.tiny123 {
+  font-size: 0.40em;
+}
+
+.small123 {
+  font-size: 0.80em;
+}
+
+.large123 {
+  font-size: 2em;
+}
+
+.huge123 {
+  font-size: 4em;
+}
+
+.red {
+  color: red;
+}
+
+.orange {
+  color: orange;
+}
+
+.green {
+  color: green;
+}
+
+.highlight {
+  background-color: yellow;
+}
+
+.code-box {
+  background-color: #f4f4f4;
+  border-radius: 5px;
+  padding: 10px;
+  font-family: monospace;
+}
+```
+
+# Digital Competences
+## Algorithms
+### A Gentle Introduction to Algorithmic Thinking
+
+#### **Christian Vedel**
+#### Department of Economics, University of Southern Denmark
+#### [christian-vs@sam.sdu.dk](mailto:christian-vs@sam.sdu.dk)
+
+???
+
+- Introduce yourself and the topic to camera; set the tone that this is about *thinking*, not programming — nobody needs to leave as a coder, but everyone will leave more informed.
+- Give a quick overview of the five sections and mention the hands-on exercises in Google Colab — encourage viewers to have a browser open and follow along.
+
+*~2 min*
+
+---
+class: middle
+
+# Today's lecture
+
+.pull-left-wide[
+**Algorithms are the engine behind every digital tool you use — understanding them makes you a sharper thinker and a better decision-maker.**
+
+- **Section 1:** What is an algorithm?
+- **Section 2:** Writing algorithms in Python
+- **Section 3:** If-then-else logic
+- **Section 4:** Using if-then to make predictions
+- **Section 5:** Functions and libraries
+]
+
+.pull-right-narrow[
+![Trees](Figures/Trees1.jpg)
+]
+
+???
+
+- Walk through the agenda and explain the arc: understanding → writing → predicting → tools; each section builds on the previous one.
+- Encourage viewers to pause and rewatch earlier sections if something is unclear before moving on — the later slides assume the earlier concepts.
+
+*~2 min*
+
+---
+
+<br><br><br>
+
+# Why Should You Care?
+
+--
+
+.pull-left[
+### You might not become a programmer
+
+And that's fine.
+
+But you *will* work with people who are.
+
+And you *will* use tools built on these ideas.
+
+]
+
+--
+
+.pull-right[
+### Understanding the basics helps you:
+
+- Ask better questions
+- Spot nonsense claims about "AI"
+- Understand what's possible (and what's not)
+- Have informed opinions about technology policy
+
+]
+
+???
+
+- Pause after revealing the left panel and address the camera directly: "You might not become a programmer — and that is completely fine."
+- Drive home the right panel: the goal is algorithmic literacy, the same way statistical literacy makes you a better professional — it shapes how you ask questions and evaluate tools.
+
+*~3 min*
+
+---
+class: inverse, middle, center
+
+# What is an Algorithm?
+
+???
+
+- Brief transition to camera; frame the upcoming section as grounding everything in a familiar concept before touching any code.
+- You can ask the students to think about whether they have ever tried to explain a recipe or a route to someone and found it surprisingly hard — that difficulty is exactly what this section is about.
+
+*~30 sec*
+
+---
+
+# An Algorithm is Just a Recipe
+
+.pull-left[
+### Making Coffee (Human Algorithm)
+
+1. Boil water
+2. Put coffee in filter
+3. **If** using milk: get milk from fridge
+4. Pour water over coffee
+5. Wait 4 minutes
+6. Pour into cup
+7. **If** using milk: add milk
+8. Done
+
+]
+
+--
+
+.pull-right[
+### Key Insight
+
+> An **algorithm** is a sequence of steps to solve a problem.
+
+- Clear instructions
+- Defined order
+- Decisions along the way (*if this, then that*)
+
+**Computers just follow recipes very fast.**
+
+]
+
+--
+
+.pull-left-wide[
+*Sidenote: Many AI systems follow rules with if-then statements with uncertainty - more about that later*
+]
+
+???
+
+- Walk through the coffee recipe step by step on camera; point out that steps 3 and 7 are already if-then logic — the concept is not new, just formalised.
+- Stress that computers are completely literal: they follow the recipe exactly as written, with no common sense or context — that is both their power and their limitation.
+
+*~3 min*
+
+---
+
+<br><br><br>
+
+# Algorithms Are Everywhere
+
+.pull-left[
+### In your daily life:
+- Google search results (ranked by algorithm)
+- Netflix recommendations
+- University admission sorting
+- Tax calculations
+]
+
+--
+
+.pull-right[
+### In your future work:
+- Legal document review systems
+- Economic forecasting models
+- Public policy simulations
+- Customer segmentation for marketing
+- Voter behavior predictions
+]
+
+--
+
+.center[
+.large123[
+Algorithms shape decisions that affect people's lives.
+]
+]
+
+???
+
+- Address the camera and invite viewers to think about which of the daily-life examples they have already encountered today — make it personal before moving to the professional list.
+- Linger on the closing statement: when an algorithm decides who gets a loan or which cases get flagged, the design choices encode values — this is why understanding them matters.
+
+*~3 min*
+
+---
+class: inverse, middle, center
+
+# Let's Write Some Algorithms
+## (In Python)
+
+???
+
+- Reassure any nervous viewers to camera: reading and understanding code is the goal, not writing it from scratch — encourage them to follow along in the Colab notebook.
+- Mention that all code examples are runnable in the notebook, so they can experiment after watching.
+
+*~30 sec*
+
+---
+# Why Python?
+
+.pull-left[
+- Most popular language for data analysis
+- Readable syntax (almost like English)
+- Used in business, research, and government
+- You don't need to master it
+- Just need to **read** and **understand** the basics
+]
+
+.pull-right[
+```python
+# This is Python code
+name = "Denmark"
+population = 5900000
+
+if population > 1000000:
+    print(name, "is a medium/large country")
+else:
+    print(name, "is a small country")
+```
+
+**Output:** `Denmark is a medium/large country`
+]
+
+???
+
+- Before explaining the code block, encourage viewers to read it themselves and guess what it outputs — the name is descriptive enough that most will get it right, which builds confidence.
+- Emphasise the "readable like English" point: this is deliberate in Python's design, and it is why even non-programmers can follow along.
+
+*~3 min*
+
+---
+# The Basics: Variables
+
+.pull-left-wide[
+> A **variable** is a named container that stores information.
+
+```python
+# Storing different types of information
+country = "Denmark"           # Text (string)
+population = 5900000          # Number (integer)
+unemployment_rate = 4.8       # Decimal number (float)
+is_eu_member = True           # True/False (boolean)
+```
+]
+
+--
+
+.pull-left-wide[
+### Think of it like a spreadsheet cell with a name
+
+| Variable Name | Value |
+|---------------|-------|
+| country | "Denmark" |
+| population | 5900000 |
+| unemployment_rate | 4.8 |
+| is_eu_member | True |
+]
+
+???
+
+- Lean heavily on the spreadsheet analogy — a named cell is exactly what a variable is, and everyone watching has used Excel.
+- Invite viewers to pause and think about what variables they would use in their own field: a lawyer might have `case_status`, an economist `gdp_growth_rate`.
+
+*~4 min*
+
+---
+# Doing Things With Variables
+
+.pull-left-wide[
+```python
+# Math works as you'd expect
+gdp = 400000000000          # 400 billion
+population = 5900000
+
+gdp_per_capita = gdp / population
+print(gdp_per_capita)
+```
+**Output:** `67796.61...`
+]
+
+--
+
+.pull-left-wide[
+```python
+# Combining text
+first_name = "Margrethe"
+title = "Queen"
+
+full_title = title + " " + first_name
+print(full_title)
+```
+**Output:** `Queen Margrethe`
+]
+
+???
+
+- The GDP per capita calculation should feel immediately familiar to economics and social science viewers — point out this is precisely how such statistics are computed in practice.
+- Note that `+` means different things for numbers (addition) and text (joining) — computers are literal about types, which is a source of many real bugs.
+
+*~3 min*
+
+---
+class: inverse, middle, center
+
+# If-Then-Else Logic
+## Making Decisions in Code
+
+???
+
+- Frame this as the most important concept of the entire lecture to camera — if-then logic is the backbone of everything from tax software to recommendation engines.
+- Tell viewers to pay close attention to the symbol table coming up: confusing `=` and `==` is one of the most common beginner mistakes.
+
+*~30 sec*
+
+---
+# The Structure of Decisions
+
+.pull-left[
+### In everyday language:
+
+**If** it's raining, **then** bring umbrella.
+
+**Otherwise**, leave it at home.
+
+]
+
+.pull-right[
+### In Python:
+
+```python
+weather = "raining"
+
+if weather == "raining":
+    print("Bring umbrella")
+else:
+    print("Leave umbrella at home")
+```
+]
+
+--
+
+.small123[
+.center[
+| Symbol | Meaning |
+|--------|---------|
+| `=` | Assign a value |
+| `==` | Check if equal |
+| `!=` | Check if NOT equal |
+| `>` `<` | Greater than / Less than |
+| `>=` `<=` | Greater or equal / Less or equal |
+]
+]
+
+???
+
+- Start with the everyday language version and note on camera that everyone already uses if-then logic dozens of times a day — the code is just a formalisation.
+- Spend time on the symbol table: `=` assigns, `==` compares — this single distinction trips up beginners consistently and is worth reading out loud.
+
+*~4 min*
+
+---
+# Example: Classifying Survey Responses
+
+.pull-left-wide[
+A common task in social science: categorize responses.
+
+```python
+# Survey question: "On a scale 0-10, how satisfied are you with the government?"
+score = 7
+
+if score <= 5:
+    print("Low satisfaction")
+else:
+    print("High satisfaction")
+```
+
+**Output:** `High satisfaction`
+]
+
+???
+
+- Connect this directly to survey research viewers may have done or studied — this is exactly how automated coding of Likert-scale responses works at scale.
+- Ask rhetorically to camera: "What if you wanted three categories instead of two?" — this primes viewers for the `elif` concept on the next slide.
+
+*~2 min*
+
+---
+# Example: Determine Tax Bracket
+
+.pull-left-wide[
+```python
+income = 450000  # DKK per year
+
+if income <= 46700:
+    bracket = "No income tax"
+elif income <= 544800:
+    bracket = "Bottom bracket only"
+else:
+    bracket = "Bottom + Top bracket"
+
+print("Tax situation:", bracket)
+```
+
+**Output:** `Tax situation: Bottom + Top bracket`
+]
+
+--
+
+.pull-left-wide[
+.small123[
+*Simplified for illustration — real Danish tax is more complex!*
+]
+]
+
+???
+
+- The Danish tax example makes it immediately real — walk through each condition step by step and check it against the income value on screen.
+- Emphasise on camera that the *order* of conditions in an `elif` chain matters: Python checks top to bottom and stops at the first true condition — swapping the order can silently produce wrong results.
+
+*~3 min*
+
+---
+# Example: Pass or Fail?
+
+.pull-left-wide[
+```python
+grade = 4   # Danish 7-point scale
+
+if grade >= 2:
+    result = "Passed"
+else:
+    result = "Failed"
+
+print("Exam result:", result)
+```
+
+**Output:** `Exam result: Passed`
+]
+
+???
+
+- Note to camera that this is exactly how a learning management system automates pass/fail decisions at exam time.
+- Keep this brief; it is a simple reinforcement of the if-else pattern before adding the complexity of `elif` and multiple conditions.
+
+*~2 min*
+
+---
+# Multiple Conditions
+
+.pull-left-wide[
+You can combine conditions with `and` / `or`:
+
+```python
+age = 25
+income = 300000
+
+# Must be under 30 AND earn less than 350000 for youth benefit
+if age < 30 and income < 350000:
+    print("Eligible for youth housing benefit")
+else:
+    print("Not eligible")
+```
+
+**Output:** `Eligible for youth housing benefit`
+]
+
+--
+
+.pull-left-wide[
+```python
+# Eligible if student OR unemployed
+is_student = True
+is_unemployed = False
+
+if is_student or is_unemployed:
+    print("Reduced price ticket")
+```
+]
+
+???
+
+- Explain `and` vs `or` with plain-English sentences to camera: `and` = both must be true simultaneously; `or` = at least one must be true — this is where most confusion arises.
+- Walk through what would happen if you swapped `and` for `or` in the housing example: suddenly far more people qualify, which is a meaningfully different policy.
+
+*~3 min*
+
+---
+# Setting Up the Exercises
+
+.pull-left[
+All three practice exercises are in a single notebook.
+
+**Steps:**
+1. Open the link below
+2. Click **"Open in Colab"** (or **File → Save a copy in Drive**)
+3. Run cells with `Shift + Enter`
+4. Solutions are hidden — reveal them only after you have tried
+
+.center[
+**[Link to Google Colab Notebook]**
+]
+]
+
+.pull-right[
+### What you need
+
+- A Google account (free)
+- A browser — no installation required
+
+### If you get stuck
+
+- Re-read the code slides
+- Try changing one thing at a time and re-running
+- Read the error message — it tells you exactly what went wrong
+]
+
+???
+
+- Encourage viewers to pause the video here, open the notebook link, and save a copy to their Drive before continuing.
+- Remind them that error messages in Colab are helpful, not scary — they point directly to what went wrong.
+
+*~3 min*
+
+---
+# .red[Test your knowledge 1: If-Then Logic]
+
+```{r countdown-quiz1A, echo=FALSE}
+library(countdown)
+countdown(0, 20, top = TRUE)
+```
+
+.pull-left-wide[
+**Q1.** You write `if grade >= 2: result = "Passed"`. A student scores 1. What is `result`?
+
+- **A)** `"Passed"` — the student attempted the exam, so they qualify — *effort should count*
+- **B)** `"Failed"` — the condition is false, so the else branch runs — *logic is strict*
+- **C)** Nothing is assigned — Python skips the variable if the condition is false — *undefined variables*
+]
+
+--
+
+.pull-left-wide[
+.green[**Answer Q1: B** — the condition `grade >= 2` is false for `grade = 1`, so the `else` branch runs and assigns `"Failed"`.]
+]
+
+```{r quiz1A-answers, eval=FALSE, include=FALSE}
+# Q1: Answer B — the condition grade >= 2 is false for grade = 1, so the else branch runs
+#   A: Tempting because students conflate real-world fairness with code logic;
+#      Python does not reason about intent, only the condition
+#   B: Correct — the else branch assigns "Failed" when the if condition is false
+#   C: Tempting for beginners who imagine Python skips unmatched branches entirely;
+#      in reality the else branch always runs when the if condition is false
+```
+
+???
+
+- Pose the question to camera, suggest viewers pause to think, then click to reveal the answer.
+- After revealing, explain why C is wrong: many beginners genuinely believe Python skips the variable entirely if the condition is false — the `else` branch always runs when the `if` is false.
+
+*~2 min*
+
+---
+# .red[Test your knowledge 1: If-Then Logic]
+
+```{r countdown-quiz1B, echo=FALSE}
+library(countdown)
+countdown(0, 20, top = TRUE)
+```
+
+.pull-left-wide[
+**Q2.** You want to flag responses where satisfaction is low (≤ 3) **or** the respondent is under 25. Which condition is correct?
+
+- **A)** `if score <= 3 and age < 25:` — *both conditions must hold*
+- **B)** `if score <= 3 or age < 25:` — *either condition is enough*
+- **C)** `if score or age:` — *Python checks the variables directly*
+]
+
+--
+
+.pull-left-wide[
+.green[**Answer Q2: B** — `or` is true when at least one condition holds. Use `and` only when you need *both* to be true simultaneously.]
+]
+
+```{r quiz1B-answers, eval=FALSE, include=FALSE}
+# Q2: Answer B — or is correct when either condition alone is sufficient
+#   A: Tempting because both conditions seem relevant; students confuse logical
+#      AND (both required) with OR (either sufficient)
+#   B: Correct — or evaluates to True if at least one condition holds
+#   C: Tempting for complete beginners who think variable names alone act as
+#      truth checks; True for non-zero values but not the intended logic
+```
+
+???
+
+- Pose the question, suggest a pause, then reveal. Explain on camera: `or` is true when *at least one* condition holds — you are flagging anyone who meets *either* criterion.
+- Walk through what `and` would produce to contrast: only people who are *both* young *and* dissatisfied — a much stricter and different criterion.
+
+*~2 min*
+
+---
+# .red[Practice 1: Write an If-Then Classifier]
+
+.small123[
+.pull-left[
+**Scenario:**
+
+You work for a municipality. Citizens apply for housing support.
+
+**Rules:**
+- Income below 200,000 → "Full support"
+- Income 200,000–350,000 → "Partial support"
+- Income above 350,000 → "No support"
+
+**Task:** Complete the code so it prints the correct support level for `income = 275000`
+]
+]
+
+--
+
+.pull-right[
+```python
+income = 275000
+
+if income < ______:
+    support = "Full support"
+elif income < ______:
+    support = "______"
+else:
+    support = "No support"
+
+print(support)
+```
+]
+
+--
+
+.small123[
+.pull-right[
+.green[
+**Answer:**
+```python
+if income < 200000:
+    support = "Full support"
+elif income < 350000:
+    support = "Partial support"
+else:
+    support = "No support"
+# Output: Partial support
+```
+]
+]
+]
+
+???
+
+- Encourage viewers to pause the video, open the Colab notebook, and try to complete the blanks themselves before watching the answer slide in.
+- After revealing, walk through the solution on camera and explain why the order of conditions matters — reversing the two thresholds would produce wrong results for incomes in the middle range.
+
+*~8 min*
+
+---
+class: inverse, middle, center
+
+# Using If-Then to Make Predictions
+
+???
+
+- Announce the conceptual leap to camera: we move from writing rules we design ourselves to using rules to *predict* outcomes from data.
+- Tell viewers this section is the bridge to machine learning — what they learn here is the manual version of what ML automates.
+
+*~30 sec*
+
+---
+# If-Then Can Make Predictions
+
+.pull-left[
+### Imagine you have this data:
+
+.small123[
+| Person | Age | Income | Education | Voted |
+|--------|-----|--------|-----------|-------|
+| Anna | 34 | 420000 | Bachelor | Yes |
+| Mads | 28 | 310000 | Master | No |
+| Signe | 45 | 580000 | PhD | Yes |
+| Lars | 22 | 180000 | High School | No |
+]
+
+You notice a pattern: *higher income seems to predict voting.*
+]
+
+--
+
+.pull-right[
+### You write a prediction rule:
+
+```python
+income = 450000  # New person
+
+if income > 350000:
+    prediction = "Will vote"
+else:
+    prediction = "Won't vote"
+
+print(prediction)
+```
+
+**Output:** `Will vote`
+
+This is a **prediction** based on data!
+]
+
+???
+
+- Point out to camera that this dataset is deliberately tiny — in reality we might have thousands of rows and dozens of columns, which is why manual rule-writing quickly becomes impractical.
+- Emphasise the key idea: the same if-then syntax becomes a *prediction* when we apply it to a new person who was not in the original data.
+
+*~4 min*
+
+---
+# Some Terminology
+
+.pull-left[
+### Features (Input)
+The information we **use** to make predictions.
+
+- Age
+- Income
+- Education
+
+*Also called: predictors, independent variables, X*
+]
+
+.pull-right[
+### Label (Output)
+What we want to **predict**.
+
+- Voted (Yes/No)
+
+*Also called: target, outcome, dependent variable, y*
+]
+
+--
+
+<br>
+
+.center[
+| | |
+|---|---|
+| **Features** | The columns we use as input |
+| **Label** | The column we try to predict |
+]
+
+???
+
+- Spend a moment on each term to camera — these appear in every ML tutorial and paper, so it is worth knowing them before the next module.
+- Invite viewers to pause and think of a features/label example from their own field: a legal case outcome model, an economic growth forecast — what would the columns be?
+
+*~3 min*
+
+---
+# Data in Tables
+
+.pull-left-wide[
+.center[
+| Person | Age | Income | Education | Voted |
+|--------|-----|--------|-----------|-------|
+| Anna | 34 | 420000 | Bachelor | Yes |
+| Mads | 28 | 310000 | Master | No |
+| Signe | 45 | 580000 | PhD | Yes |
+| Lars | 22 | 180000 | High School | No |
+]
+
+- **Rows** = Observations (individual people, cases, countries, etc.)
+- **Columns** = Variables (characteristics we measure)
+- **Features** = Age, Income, Education (what we use to predict)
+- **Label** = Voted (what we want to predict)
+]
+
+???
+
+- Point at each part of the table while speaking: rows, columns, the feature columns, and the label column — make the visual connection explicit.
+- Make sure the distinction is clear before moving on; the next slides depend entirely on viewers being able to identify features vs label.
+
+*~3 min*
+
+---
+# The Hard Part
+
+.pull-left[
+### We wrote this rule:
+
+```python
+if income > 350000:
+    prediction = "Will vote"
+else:
+    prediction = "Won't vote"
+```
+
+### But how do we know it's good?
+
+- Why 350,000? Why not 300,000?
+- Should we also use age?
+- What about education?
+- How do we combine multiple features?
+]
+
+--
+
+.pull-right[
+### The problem:
+
+**Writing good if-then rules by hand is hard.**
+
+We'd have to:
+- Try many different thresholds
+- Test many combinations
+- Check which rules actually work
+
+.red[
+This is exactly what **Machine Learning** automates.
+]
+
+*→ Topic of the next module*
+]
+
+???
+
+- Let the rhetorical question land on camera: "If you had 50 features, how many threshold combinations would you need to test manually?" — pause before moving on.
+- The punchline is the key reframe: ML is not magic, it is systematic search for the best if-then rules — this makes the next module feel approachable rather than mysterious.
+
+*~4 min*
+
+---
+# .red[Test your knowledge 2: Features and Labels]
+
+```{r countdown-quiz2A, echo=FALSE}
+library(countdown)
+countdown(0, 20, top = TRUE)
+```
+
+.pull-left-wide[
+**Q1.** A city wants to predict which streets will need repair in the next year. Which is the label?
+
+- **A)** Street age and annual traffic volume — *the obvious facts we know about a street*
+- **B)** Whether the street needs repair — *what we are trying to find out*
+- **C)** Last year's repair cost — *the most concrete output we can measure*
+]
+
+--
+
+.pull-left-wide[
+.green[**Answer Q1: B** — the label is what we want to predict. Street age and traffic are features (inputs we already know); repair cost is a separate outcome, not what we're predicting here.]
+]
+
+
+```{r quiz2A-answers, eval=FALSE, include=FALSE}
+# ANSWERS
+#
+# Q1: Answer B — "whether the street needs repair" is the outcome we want to predict
+#   A: Tempting because age and traffic are salient descriptors; students confuse
+#      what we measure WITH what we predict
+#   B: Correct — the label is what we want the model to output
+#   C: Tempting because cost sounds like a concrete, quantifiable outcome; but
+#      cost is a feature (input) if we are predicting repair need, or a separate
+#      prediction task
+#
+# Q2: Answer B — large gap between train and test accuracy signals overfitting
+#   A: Tempting because threshold tuning sounds actionable; but adjusting thresholds
+#      addresses symptoms, not the root cause (model memorised the training set)
+#   B: Correct — overfitting means the model has not learned generalisable patterns
+#   C: Tempting because blaming data quality deflects from the model; possible but
+#      not the most likely explanation when train accuracy is so much higher
+```
+
+???
+
+- Pose the question to camera, suggest viewers pause to think, then reveal. Street age and traffic are things we *already know* — the label is what we are *trying to find out*.
+- Spend a moment on distractor C on camera: repair cost *could* be the label in a different question (e.g., predicting budget needs) — the label depends on what question you are trying to answer.
+
+*~2 min*
+
+---
+# .red[Test your knowledge 2: Features and Labels]
+
+```{r countdown-quiz2B, echo=FALSE}
+library(countdown)
+countdown(0, 20, top = TRUE)
+```
+
+.pull-left-wide[
+**Q2.** Your classifier achieves 90% accuracy on your training data but only 55% on new data. What is the most likely cause?
+
+- **A)** The threshold values are set too high — *a tuning problem, easy to fix*
+- **B)** The model memorised training patterns that don't generalise to new data — *a learning problem*
+- **C)** The new data contains measurement errors — *a data quality problem*
+]
+
+--
+
+.pull-left-wide[
+.green[**Answer Q2: B** — a large gap between training and test accuracy is the hallmark of *overfitting*: the model learned the training data too specifically and fails on new cases.]
+]
+
+```{r quiz2B-answers, eval=FALSE, include=FALSE}
+# ANSWERS
+#
+# Q1: Answer B — "whether the street needs repair" is the outcome we want to predict
+#   A: Tempting because age and traffic are salient descriptors; students confuse
+#      what we measure WITH what we predict
+#   B: Correct — the label is what we want the model to output
+#   C: Tempting because cost sounds like a concrete, quantifiable outcome; but
+#      cost is a feature (input) if we are predicting repair need, or a separate
+#      prediction task
+#
+# Q2: Answer B — large gap between train and test accuracy signals overfitting
+#   A: Tempting because threshold tuning sounds actionable; but adjusting thresholds
+#      addresses symptoms, not the root cause (model memorised the training set)
+#   B: Correct — overfitting means the model has not learned generalisable patterns
+#   C: Tempting because blaming data quality deflects from the model; possible but
+#      not the most likely explanation when train accuracy is so much higher
+```
+
+???
+
+- Pose, suggest a pause, then reveal. Name the phenomenon explicitly on camera: this is called *overfitting* — introduce the term so viewers recognise it in the next module.
+- Give the exam-memorisation analogy to camera: a student who memorises past exam answers but cannot handle a new question is overfitting — the model learned the training set, not the underlying pattern.
+
+*~2 min*
+
+---
+# .red[Practice 2: Identify Features and Labels]
+
+.pull-left-wide[
+For each scenario, identify what are the **features** and what is the **label**:
+
+.small123[
+| Scenario | Features | Label |
+|----------|----------|-------|
+| Predict if a student will graduate | Age, GPA, attendance, ... | ? |
+| Predict house prices | Size, location, rooms, ... | ? |
+| Predict if email is spam | Words used, sender, links, ... | ? |
+| Predict election winner | Polls, economy, incumbent, ... | ? |
+]
+
+Think about it — what column are we trying to predict in each case?
+]
+
+--
+
+.pull-left-wide[
+.green[
+**Answers:**
+
+.small123[
+| Scenario | Label |
+|----------|-------|
+| Predict if a student will graduate | Yes/No (will the student graduate?) |
+| Predict house prices | Price in DKK |
+| Predict if email is spam | Yes/No (is this email spam?) |
+| Predict election winner | Candidate name or party |
+]
+]
+]
+
+???
+
+- Encourage viewers to pause and fill in the table themselves before the answers slide in — it is conceptual enough to do mentally or on paper.
+- After revealing, ask rhetorically to camera: could the same dataset support a different prediction task? For example, could you predict neighbourhood from house features? — this shows that the label is a choice, not a fixed fact.
+
+*~5 min*
+
+---
+class: inverse, middle, center
+
+# Functions and Libraries
+## Black Boxes and Reusable Code
+
+???
+
+- Frame this to camera as "tools you can use without building them" — the same way you use a calculator without knowing its circuitry or a GPS without understanding satellite geometry.
+- Tell viewers this is what makes Python so powerful for non-programmers: someone else did the hard work, you just need to know what goes in and what comes out.
+
+*~30 sec*
+
+---
+# Functions: Black Boxes
+
+.pull-left[
+> A **function** is a reusable piece of code: give it input, it returns output.
+
+You don't *need* to know *how* it works inside. (Of course it's good to understand, but it's not required to use it.)
+
+]
+
+--
+
+.pull-right[
+```
+    ┌─────────────┐
+    │             │
+───>│  FUNCTION   │───>
+ Input            Output
+    │             │
+    └─────────────┘
+```
+
+**Example:** `print("Hello")`
+- Input: `"Hello"`
+- Output: Text appears on screen
+]
+
+???
+
+- The black-box metaphor is immediately relatable — say on camera that we use black boxes all day: a microwave, a GPS, a search engine — we need to know what to put in and what comes out, not the internals.
+- Stress that this is a valid and professional way to use tools: even expert programmers use libraries without reading every line of source code.
+
+*~3 min*
+
+---
+# Using Functions
+
+.pull-left-wide[
+```python
+# Built-in functions
+text = "Hello World"
+
+length = len(text)        # len() counts characters
+print(length)             # Output: 11
+
+number = -42
+positive = abs(number)    # abs() gives absolute value
+print(positive)           # Output: 42
+
+numbers = [4, 8, 2, 9, 1]
+biggest = max(numbers)    # max() finds the maximum
+print(biggest)            # Output: 9
+```
+]
+
+--
+
+.pull-left-wide[
+You don't need to know *how* `max()` finds the maximum.
+
+You just need to know: **put in a list → get out the biggest number**
+]
+
+???
+
+- Walk through each function on screen and encourage viewers to predict the output before it is shown — `abs()` and `max()` are intuitive enough that most will guess correctly.
+- Reinforce the input/output framing for each: `len()` gets a string, returns an integer; `max()` gets a list, returns the largest element — that is the only interface knowledge needed.
+
+*~3 min*
+
+---
+# Libraries: Collections of Functions
+
+.pull-left[
+> A **library** is a collection of pre-written functions you can import and use.
+
+Instead of writing everything yourself, you **import** what others have built.
+
+```python
+# Import a library
+import random
+
+# Use a function from that library
+dice_roll = random.randint(1, 6)
+print(dice_roll)
+```
+]
+
+.pull-right[
+### Common Libraries:
+
+| Library | Used For |
+|---------|----------|
+| `random` | Random numbers |
+| `pandas` | Data tables |
+| `matplotlib` | Charts/graphs |
+| `scikit-learn` | Machine learning |
+| `transformers` | AI/language models |
+
+]
+
+???
+
+- Say on camera what you expect `random.randint(1, 6)` to do before explaining it — the name is descriptive enough that viewers will guess correctly, reinforcing the "readable like English" point.
+- Walk through the library table and note that `pandas` and `scikit-learn` will appear in later modules — today's concepts are the foundation they build on.
+
+*~3 min*
+
+---
+# Why Libraries Matter
+
+.pull-left[
+### Without libraries:
+Writing a machine learning model from scratch would take months of expert work.
+
+### With libraries:
+```python
+from sklearn.linear_model import LinearRegression
+
+model = LinearRegression()
+model.fit(X_train, y_train)
+predictions = model.predict(X_test)
+```
+
+**Four lines of code.**
+]
+
+.pull-right[
+### The key insight:
+
+You don't need to understand the 10,000 lines of code inside `sklearn`.
+
+You need to understand:
+- What goes **in** (training data)
+- What comes **out** (predictions)
+- When to use it
+]
+
+???
+
+- Let the contrast — "months of expert work" vs "four lines of code" — land on camera before moving on.
+- Emphasise the right panel as the professional skill: knowing *when* to use a tool and being able to validate its output is more valuable than knowing every implementation detail.
+
+*~3 min*
+
+---
+# .red[Test your knowledge 3: Functions and Libraries]
+
+```{r countdown-quiz3A, echo=FALSE}
+library(countdown)
+countdown(0, 20, top = TRUE)
+```
+
+.pull-left-wide[
+**Q1.** `len("Hello")` returns 5. What does `len()` receive and return?
+
+- **A)** Input: the memory address of "Hello"; Output: 5 — *computers work at a low level*
+- **B)** Input: the string "Hello"; Output: the number of characters — *straightforward input/output*
+- **C)** Input: "Hello"; Output: the number of words — *len counts the things inside*
+]
+
+--
+
+.pull-left-wide[
+.green[**Answer Q1: B** — `len()` counts characters, not words. `"Hello"` has 5 characters. The interface is: string in → integer (character count) out.]
+]
+
+```{r quiz3A-answers, eval=FALSE, include=FALSE}
+# Q1: Answer B — len() takes a string and returns the character count
+#   A: Tempting because students know computers operate on memory; conflates
+#      low-level implementation with the function's interface
+#   B: Correct — the function signature is: string in, integer (character count) out
+#   C: Tempting because "Hello" has 1 word and students may think len counts units
+#      of meaning rather than characters; exposes confusion about what is counted
+```
+
+???
+
+- Pose the question, suggest a pause, then reveal. Count the characters of "Hello" out loud on camera: H-e-l-l-o = 5, not 1 word.
+- Distractor A is a good entry point to name the low-level vs high-level distinction on camera: we work at the interface level, not the hardware level — most professionals never need the low level.
+
+*~2 min*
+
+---
+# .red[Test your knowledge 3: Functions and Libraries]
+
+```{r countdown-quiz3B, echo=FALSE}
+library(countdown)
+countdown(0, 20, top = TRUE)
+```
+
+.pull-left-wide[
+**Q2.** A colleague runs three lines using a library you've never seen and builds a predictive model. Should you trust the output?
+
+- **A)** Yes — libraries are tested by experts, so results are always reliable — *expert-built = trustworthy*
+- **B)** It depends — understand what goes in and out, and validate on known data — *trust but verify*
+- **C)** No — only code you understand line-by-line can be trusted — *black boxes are dangerous*
+]
+
+--
+
+.pull-left-wide[
+.green[**Answer Q2: B** — libraries are reliable tools, but you still need to check that the inputs are correct and the outputs make sense for your specific use case.]
+]
+
+```{r quiz3B-answers, eval=FALSE, include=FALSE}
+# Q2: Answer B — critical thinking about library output is essential
+#   A: Tempting because libraries are well-tested; students over-generalise "tested"
+#      to mean "always correct for my specific use case"
+#   B: Correct — libraries are reliable tools but require the user to validate inputs,
+#      outputs, and whether the tool is appropriate for the task
+#   C: Tempting as a cautious position; but this standard is impossible in practice
+#      and would prevent using any professional tool
+```
+
+???
+
+- Pose, suggest a pause, then reveal. Frame this on camera as the most important professional question of the day: knowing when to trust a tool's output is a critical skill whether you are using Excel, a stats package, or an AI model.
+- Give concrete examples on camera of when validation matters: wrong data format passed to the function, a model trained on US data used to predict Danish outcomes.
+
+*~2 min*
+
+---
+# .red[Practice 3: Classify Citizens (Colab)]
+
+.pull-left[
+Open **Practice 3** in the notebook.
+
+**Your task:**
+1. Run the starter code and see what it does
+2. Change the income threshold to something you think makes sense for Denmark
+3. Add a third category: `"Very high income"` for people earning over 800,000 DKK
+
+Then test your classifier on at least three different income values.
+]
+
+--
+
+.pull-right[
+.green[
+**One possible answer:**
+```python
+if income < 200000:
+    category = "Low income"
+elif income < 800000:
+    category = "High income"
+else:
+    category = "Very high income"
+```
+]
+]
+
+???
+
+- Encourage viewers to pause the video, open Colab, and actually run and modify the code before watching the answer slide in — this is the most hands-on exercise of the session.
+- After revealing, explain on camera why the thresholds 200,000 and 800,000 were chosen and note that there is no single correct answer — the point is to reason about what makes sense in context.
+
+*~8 min*
+
+---
+class: middle
+
+# Summary
+
+.pull-left[
+### You've learned:
+
+1. **Algorithms** = step-by-step instructions
+2. **Python basics**: variables, print, simple math
+3. **If-then-else**: making decisions in code
+4. **Data structure**: rows, columns, features, labels
+5. **Functions & libraries**: black boxes you can use
+
+]
+
+.pull-right[
+### Why it matters:
+
+- Machine learning is built on these basics
+- Understanding helps you work with technical people
+- You can read code even if you don't write it daily
+- Informed citizens make better decisions about AI policy
+
+]
+
+???
+
+- Briefly recap each of the five points to camera and invite viewers to think about which concept was most surprising or counterintuitive for them.
+- Point forward to the next module on machine learning and emphasise on camera that today's manual if-then rules are exactly what ML automates — they now have the conceptual foundation to understand what is happening under the hood.
+
+*~3 min*

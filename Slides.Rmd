@@ -182,7 +182,7 @@ And you *will* use tools built on these ideas.
 ---
 class: inverse, middle, center
 
-# What is an Algorithm?
+# 1. What is an Algorithm?
 
 ???
 
@@ -280,7 +280,7 @@ Algorithms shape decisions that affect people's lives.
 ---
 class: inverse, middle, center
 
-# Let's Write Some Algorithms
+# 2. Let's Write Some Algorithms
 ## (In Python)
 
 ???
@@ -397,7 +397,7 @@ print(full_title)
 ---
 class: inverse, middle, center
 
-# If-Then-Else Logic
+# 3. If-Then-Else Logic
 ## Making Decisions in Code
 
 ???
@@ -758,7 +758,7 @@ else:
 ---
 class: inverse, middle, center
 
-# Using If-Then to Make Predictions
+# 4. Using If-Then to Make Predictions
 
 ???
 
@@ -1027,7 +1027,7 @@ countdown(0, 20, top = TRUE)
 ---
 class: inverse, middle, center
 
-# Functions and Libraries
+# 5. Functions and Libraries
 ## Black Boxes and Reusable Code
 
 ???

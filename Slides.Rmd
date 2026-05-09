@@ -594,7 +594,7 @@ Both practice exercises are in a single notebook.
 .center[
 **[Open the notebook](https://drive.google.com/file/d/1BYwgq2Qnw5aaiBaoXXrgkoVFyMXBi76K/view?usp=sharing)**
 
-.tiny123[drive.google.com/file/d/1BYwgq2Qnw5aaiBaoXXrgkoVFyMXBi76K]
+.small123[drive.google.com/file/d/1BYwgq2Qnw5aaiBaoXXrgkoVFyMXBi76K]
 ]
 ]
 

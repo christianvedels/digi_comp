@@ -583,7 +583,7 @@ if is_student or is_unemployed:
 # Setting Up the Exercises
 
 .pull-left[
-All three practice exercises are in a single notebook.
+Both practice exercises are in a single notebook.
 
 **Steps:**
 1. Open the link below
@@ -592,7 +592,9 @@ All three practice exercises are in a single notebook.
 4. Solutions are hidden — reveal them only after you have tried
 
 .center[
-**[Open the notebook](https://drive.google.com/file/d/1jPrruG6JJxPGGqXYFrSSQ9QJLYqwP5Qv/view?usp=sharing)**
+**[Open the notebook](https://drive.google.com/file/d/1BYwgq2Qnw5aaiBaoXXrgkoVFyMXBi76K/view?usp=sharing)**
+
+.tiny123[drive.google.com/file/d/1BYwgq2Qnw5aaiBaoXXrgkoVFyMXBi76K]
 ]
 ]
 
@@ -1023,48 +1025,6 @@ countdown(0, 20, top = TRUE)
 *~2 min*
 
 ---
-# .red[Practice 2: Identify Features and Labels]
-
-.pull-left-wide[
-For each scenario, identify what are the **features** and what is the **label**:
-
-.small123[
-| Scenario | Features | Label |
-|----------|----------|-------|
-| Predict if a student will graduate | Age, GPA, attendance, ... | ? |
-| Predict house prices | Size, location, rooms, ... | ? |
-| Predict if email is spam | Words used, sender, links, ... | ? |
-| Predict election winner | Polls, economy, incumbent, ... | ? |
-]
-
-Think about it — what column are we trying to predict in each case?
-]
-
---
-
-.pull-left-wide[
-.green[
-**Answers:**
-
-.small123[
-| Scenario | Label |
-|----------|-------|
-| Predict if a student will graduate | Yes/No (will the student graduate?) |
-| Predict house prices | Price in DKK |
-| Predict if email is spam | Yes/No (is this email spam?) |
-| Predict election winner | Candidate name or party |
-]
-]
-]
-
-???
-
-- Encourage viewers to pause and fill in the table themselves before the answers slide in — it is conceptual enough to do mentally or on paper.
-- After revealing, ask rhetorically to camera: could the same dataset support a different prediction task? For example, could you predict neighbourhood from house features? — this shows that the label is a choice, not a fixed fact.
-
-*~5 min*
-
----
 class: inverse, middle, center
 
 # Functions and Libraries
@@ -1300,10 +1260,10 @@ countdown(0, 20, top = TRUE)
 *~2 min*
 
 ---
-# .red[Practice 3: Classify Citizens (Colab)]
+# .red[Practice 2: Classify Citizens (Colab)]
 
 .pull-left[
-Open **Practice 3** in the notebook.
+Open **Practice 2** in the notebook.
 
 **Your task:**
 1. Run the starter code and see what it does

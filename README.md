@@ -4,7 +4,7 @@ Slides for *A Gentle Introduction to Algorithmic Thinking*, part of the Digital 
 
 **View slides:** https://christianvedels.github.io/digi_comp/Slides.html
 
-**Practice notebook:** https://drive.google.com/file/d/1jPrruG6JJxPGGqXYFrSSQ9QJLYqwP5Qv/view?usp=sharing
+**Practice notebook:** https://drive.google.com/file/d/1BYwgq2Qnw5aaiBaoXXrgkoVFyMXBi76K/view?usp=sharing
 
 ## Rendering
 

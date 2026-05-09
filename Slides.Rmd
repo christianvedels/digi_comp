@@ -106,6 +106,8 @@ xaringanExtra::use_tile_view()
 #### Department of Economics, University of Southern Denmark
 #### [christian-vs@sam.sdu.dk](mailto:christian-vs@sam.sdu.dk)
 
+#### [Slides](https://christianvedels.github.io/digi_comp_algorithms/Slides.html)
+
 ???
 
 - Introduce yourself and the topic to camera; set the tone that this is about *thinking*, not programming — nobody needs to leave as a coder, but everyone will leave more informed.

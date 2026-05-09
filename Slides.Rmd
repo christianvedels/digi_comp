@@ -590,7 +590,7 @@ All three practice exercises are in a single notebook.
 4. Solutions are hidden — reveal them only after you have tried
 
 .center[
-**[Link to Google Colab Notebook]**
+**[Open the notebook](https://drive.google.com/file/d/1jPrruG6JJxPGGqXYFrSSQ9QJLYqwP5Qv/view?usp=sharing)**
 ]
 ]
 

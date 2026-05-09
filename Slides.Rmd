@@ -106,7 +106,7 @@ xaringanExtra::use_tile_view()
 #### Department of Economics, University of Southern Denmark
 #### [christian-vs@sam.sdu.dk](mailto:christian-vs@sam.sdu.dk)
 
-#### [Slides](https://christianvedels.github.io/digi_comp_algorithms/Slides.html)
+#### [Slides: christianvedels.github.io/digi_comp/Slides.html](https://christianvedels.github.io/digi_comp/Slides.html)
 
 ???
 

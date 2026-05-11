@@ -976,53 +976,6 @@ countdown(0, 20, top = TRUE)
 
 *~2 min*
 
----
-# .red[Test your knowledge 2: Features and Labels]
-
-```{r countdown-quiz2B, echo=FALSE}
-library(countdown)
-countdown(0, 20, top = TRUE)
-```
-
-.pull-left-wide[
-**Q2.** Your classifier achieves 90% accuracy on your training data but only 55% on new data. What is the most likely cause?
-
-- **A)** The threshold values are set too high — *a tuning problem, easy to fix*
-- **B)** The model memorised training patterns that don't generalise to new data — *a learning problem*
-- **C)** The new data contains measurement errors — *a data quality problem*
-]
-
---
-
-.pull-left-wide[
-.green[**Answer Q2: B** — a large gap between training and test accuracy is the hallmark of *overfitting*: the model learned the training data too specifically and fails on new cases.]
-]
-
-```{r quiz2B-answers, eval=FALSE, include=FALSE}
-# ANSWERS
-#
-# Q1: Answer B — "whether the street needs repair" is the outcome we want to predict
-#   A: Tempting because age and traffic are salient descriptors; students confuse
-#      what we measure WITH what we predict
-#   B: Correct — the label is what we want the model to output
-#   C: Tempting because cost sounds like a concrete, quantifiable outcome; but
-#      cost is a feature (input) if we are predicting repair need, or a separate
-#      prediction task
-#
-# Q2: Answer B — large gap between train and test accuracy signals overfitting
-#   A: Tempting because threshold tuning sounds actionable; but adjusting thresholds
-#      addresses symptoms, not the root cause (model memorised the training set)
-#   B: Correct — overfitting means the model has not learned generalisable patterns
-#   C: Tempting because blaming data quality deflects from the model; possible but
-#      not the most likely explanation when train accuracy is so much higher
-```
-
-???
-
-- Pose, suggest a pause, then reveal. Name the phenomenon explicitly on camera: this is called *overfitting* — introduce the term so viewers recognise it in the next module.
-- Give the exam-memorisation analogy to camera: a student who memorises past exam answers but cannot handle a new question is overfitting — the model learned the training set, not the underlying pattern.
-
-*~2 min*
 
 ---
 class: inverse, middle, center
